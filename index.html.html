@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Acta De Matrimonio</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: "Georgia", serif;
+      padding: 20px;
+      background: #e0f7fa; /* Azul agua claro */
+    }
+    .card {
+      position: relative;
+      background: white; 
+      padding: 30px;
+      border: 2px solid #00bcd4;
+      max-width: 750px;
+      margin: 0 auto;
+      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    /* Imagen de fondo con transparencia */
+    .card::before {
+      content: "";
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background: url('https://images.pexels.com/photos/16130706/pexels-photo-16130706.jpeg?cs=srgb&dl=pexels-szafran-16130706.jpg&fm=jpg') no-repeat center center;
+      background-size: cover;
+      opacity: 0.2; /* transparencia */
+      z-index:0;
+    }
+    h1 {
+      text-align: center;
+      font-size: 26px;
+      color: #007c91;
+      margin-bottom: 10px;
+      position: relative;
+      z-index:1;
+    }
+    .center { text-align:center; font-style: italic; color: #007c91; position: relative; z-index:1; }
+    .content { font-size: 16px; line-height: 1.6; margin-top: 15px; color: #004d60; position: relative; z-index:1; }
+    ol li { margin: 12px 0; }
+    .signs { margin-top:30px; display:flex; justify-content:space-between; position: relative; z-index:1; }
+    .btn {
+      display:block;
+      margin:20px auto 0;
+      padding:12px 18px;
+      background:#007c91;
+      color:white;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:16px;
+    }
+    /* Iconos en esquinas */
+    .corner-icon {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      z-index:1;
+    }
+    .top-left { top: -10px; left: -10px; }
+    .top-right { top: -10px; right: -10px; }
+    .bottom-left { bottom: -10px; left: -10px; }
+    .bottom-right { bottom: -10px; right: -10px; }
+  </style>
+</head>
+<body>
+  <div class="card" id="acta">
+    <!-- Nuevos iconos de amistad en las esquinas -->
+    <img src="https://i.pinimg.com/originals/2a/a4/2d/2aa42d32d0fc0d51e14da1dccb8c1b26.jpg" class="corner-icon top-left">
+    <img src="https://i.pinimg.com/originals/2a/a4/2d/2aa42d32d0fc0d51e14da1dccb8c1b26.jpg" class="corner-icon top-right">
+    <img src="https://i.pinimg.com/originals/2a/a4/2d/2aa42d32d0fc0d51e14da1dccb8c1b26.jpg" class="corner-icon bottom-left">
+    <img src="https://i.pinimg.com/originals/2a/a4/2d/2aa42d32d0fc0d51e14da1dccb8c1b26.jpg" class="corner-icon bottom-right">
+
+    <h1>Acta de Matrimonio</h1>
+    <div class="center">Guayaquil, 8 de septiembre de 2025</div>
+    <div class="content" id="contenido">
+      <p><b>Alondra Pozo</b><br>y<br><b>Ulises Manzaba</b></p>
+      <p>Para sellar un acuerdo especial de amistad y complicidad eterna, bajo las siguientes cláusulas simbólicas:</p>
+      <ol>
+        <li>Ulises tendrá siempre la última palabra en cualquier discusión, incluso si no tiene razón.</li>
+        <li>Alondra se compromete a hacer caso en todo (aunque a veces solo finja hacerlo 🤭).</li>
+        <li>A cambio, Alondra tendrá derecho exclusivo al dinero y a todos los antojos que se le ocurran.</li>
+        <li>Ambos acuerdan que las peleas no duran más de un día y deben resolverse con risas, bromas o comida.</li>
+        <li>La amistad será siempre prioridad, por encima de enojos, distancias o malentendidos.</li>
+        <li>Juran cuidarse mutuamente, apoyarse y nunca dejar que nada ni nadie rompa este lazo especial.</li>
+      </ol>
+      <p><b>Declaración final:</b><br>Firman este documento como un símbolo de amistad, cariño y complicidad eterna, con un toque de humor y mucho amor.</p>
+      <div class="signs">
+        <div style="text-align:center">
+          __________________________<br>Alondra Pozo
+        </div>
+        <div style="text-align:center">
+          __________________________<br>Ulises Manzaba 
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+  <script>
+    const { jsPDF } = window.jspdf;
+    document.getElementById('btnPdf').addEventListener('click', () => {
+      const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+      const element = document.getElementById('acta');
+      doc.html(element, {
+        x: 30,
+        y: 30,
+        html2canvas: { scale: 1.5 },
+        callback: function (doc) {
+          doc.save('Acta_Simbolica_Union_Amigos.pdf');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
